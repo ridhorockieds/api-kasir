@@ -11,7 +11,7 @@ class BarangController extends Controller
 {
     public function index()
     {
-        $data = Barang::all();
+        $data = Barang::orderBy('created_at', 'desc')->get();
         return response()->json([
             'success' => true,
             'message' => 'List Semua Data Barang',
