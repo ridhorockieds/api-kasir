@@ -11,7 +11,7 @@ class SupplierController extends Controller
 {
     public function index()
     {
-        $data = \App\Models\Supplier::all();
+        $data = \App\Models\Supplier::orderBy('created_at', 'DESC')->get();
         return response()->json([
             'success' => true,
             'message' => 'List Semua Data Supplier',
