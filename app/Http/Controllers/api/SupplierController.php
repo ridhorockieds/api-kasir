@@ -45,4 +45,22 @@ class SupplierController extends Controller
             ], 200);
         }
     }
+
+    public function destroy(Request $request)
+    {
+        $data = Supplier::where('nama', $request->nama)->first();
+
+        if ($data) {
+            $data->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'Data Supplier Berhasil Dihapus',
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data Supplier Tidak Ditemukan',
+            ], 404);
+        }
+    }
 }

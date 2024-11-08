@@ -64,4 +64,22 @@ class BarangController extends Controller
             'data' => $data,
         ], 200);
     }
+
+    public function destroy(Request $request)
+    {
+        $barang = Barang::where('nobarcode', $request->nobarcode)->first();
+
+        if ($barang) {
+            $barang->delete();
+            return response()->json([
+                'success' => true,
+                'message' => 'Data Barang Berhasil Dihapus',
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Data Barang Tidak Ditemukan',
+            ], 404);
+        }
+    }
 }
